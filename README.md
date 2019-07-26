@@ -1,4 +1,4 @@
-#Regression
+# Regression
 
 A file data.csv is needed with a column for x coordinates and one for y. The first column becomes the variable *x* and the second one becomes *y*.
 
