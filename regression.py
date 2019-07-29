@@ -41,7 +41,7 @@ def linear(x,y):
     ss_tot = 0
     for index in range(len(x)):
         ss_tot += (y[index]-y_mean)**2
-        ss_reg += (y[index]-(m*x[index])-b)**2
+        ss_reg += (y[index]-(m*x[index])-c)**2
     r_2 = 1-(ss_reg/ss_tot)
     
     return m,c,r_2
@@ -82,9 +82,7 @@ def exponential(x,y):
     """
     returns a, b such that y = a*e^(b*x)
     """
-    y_log = []
-    for item in y:
-        y_log.append(np.log(item))
+    y_log = np.log(y)
     m, c, r_2 = linear(x,y_log)
     
     return exp(c), m, r_2
