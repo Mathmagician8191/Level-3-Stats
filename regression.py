@@ -87,7 +87,7 @@ def exponential(x,y):
     
     return np.exp(c), m, r_2
 
-def log_log(x,y):
+def power(x,y):
     """
     returns m, b such that y = b*x^m
     """
