@@ -13,6 +13,9 @@ for item in raw_data:
     y.append(item[1])
 
 def linear(x,y):
+    """
+    returns m, c, r_2 such that y = m*x + c
+    """
     x_mean = 0
     for item in x:
         x_mean += item
@@ -44,6 +47,9 @@ def linear(x,y):
     return m,c,r_2
 
 def polynomial(x,y,order):
+    """
+    returns beta, r_2 such that y = sum(beta[n]*x^n)
+    """
     array = []
     for item in x:
         line = []
@@ -71,3 +77,14 @@ def polynomial(x,y,order):
     r_2 = 1 - (sse/sst)
     
     return beta, r_2
+
+def exponential(x,y):
+    """
+    returns a, b such that y = a*e^(b*x)
+    """
+    y_log = []
+    for item in y:
+        y_log.append(np.log(item))
+    m, c, r_2 = linear(x,y_log)
+    
+    return exp(c), m, r_2
