@@ -86,3 +86,14 @@ def exponential(x,y):
     m, c, r_2 = linear(x,y_log)
     
     return np.exp(c), m, r_2
+
+def log_log(x,y):
+    """
+    returns m, b such that y = b*x^m
+    """
+    x_log = np.log(x)
+    y_log = np.log(y)
+    
+    m, c, r_2 = linear(x_log,y_log)
+    
+    return m, np.exp(c), r_2
