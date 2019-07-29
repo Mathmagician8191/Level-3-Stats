@@ -10,3 +10,5 @@ The projects that are planned are:
 3. Time series
 4. Bootstrapping (for formal inference)
 5. Linear equation solver (for systems of simultaneous equations)
+
+To install Python, go to [python.org](python.org)
