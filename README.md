@@ -1,6 +1,6 @@
 # Regression
 
-A file data.csv is needed with a column for x coordinates and one for y. The first column becomes the variable *x* and the second one becomes *y*.
+A file *data.csv* is needed with a column for x coordinates and one for y. The first column becomes the variable *x* and the second one becomes *y*.
 
 *linear(x,y)* does linear regression on *x* and *y*. It returns *m* and *c* such that *mx+c* is the best linear match for the data.
 
