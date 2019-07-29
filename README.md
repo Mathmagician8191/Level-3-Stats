@@ -8,10 +8,12 @@ A file *data.csv* is needed with a column for x coordinates and one for y. The f
 
 *exponential(x,y)* matches *x* and *y* to an exponenential function. It returns *a* and *b* such that *a\*e^bx* is the best exponential match for the data.
 
+*power(x,y)* mathches *x* and *y* to a power function. Ot returns m and b such that *b\*x^m* is the best power curve to fit the data.
+
 All functions also give an R<sup>2</sup> value.
 
 This script uses numpy, type:
 ```
 py -m pip install numpy
 ```
-into command prompt to install it.
+into command prompt to install it. This must be done after installing python.
