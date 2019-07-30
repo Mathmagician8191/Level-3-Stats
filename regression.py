@@ -8,9 +8,13 @@ raw_data = csv.reader(file, delimiter=",")
 x = []
 y = []
 
+header = False #whether or not the data has a header row put True or False
+
 for item in raw_data:
-    x.append(item[0])
-    y.append(item[1])
+    if not(header):
+        x.append(float(item[0])) #explanatory variable column - 0-indexed
+        y.append(float(item[1])) #response variable column - 0-indexed
+    else: header = False
 
 def linear(x,y):
     """
