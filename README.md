@@ -10,6 +10,8 @@ A file *data.csv* is needed with a column for x coordinates and one for y. The f
 
 *power(x,y)* mathches *x* and *y* to a power function. Ot returns m and b such that *b\*x^m* is the best power curve to fit the data.
 
+*best_polynomial(x,y)* matches *x* and *y* to a polynomial by incrementing the order until the adjusted r squared becomes lower.
+
 All functions also give an R<sup>2</sup> value.
 
 This script uses numpy, type:

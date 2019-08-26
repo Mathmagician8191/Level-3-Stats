@@ -52,8 +52,10 @@ def linear(x,y):
 
 def polynomial(x,y,order):
     """
-    returns beta, r_2 such that y = sum(beta[n]*x^n)
+    returns beta, ar_2 such that y = sum(beta[n]*x^n)
     """
+    n = len(x)
+    
     array = []
     for item in x:
         line = []
@@ -66,10 +68,10 @@ def polynomial(x,y,order):
     y_mean = 0
     for item in y:
         y_mean += item
-    y_mean /= len(y)
+    y_mean /= n
     
     sse = 0
-    for index in range(len(x)):
+    for index in range(n):
         x_i = x[index]
         value = 0
         for index2 in range(len(beta)):
@@ -78,9 +80,9 @@ def polynomial(x,y,order):
     sst = 0
     for item in y:
         sst += (item - y_mean)**2
-    r_2 = 1 - (sse/sst)
+    ar_2 = 1- ((sse/sst)*(n-1)/(n-order-1))
     
-    return beta, r_2
+    return beta, ar_2
 
 def exponential(x,y):
     """
@@ -101,3 +103,18 @@ def power(x,y):
     m, c, r_2 = linear(x_log,y_log)
     
     return m, np.exp(c), r_2
+
+def best_polynomial(x,y):
+    """
+    Finds the polynomial with best adjusted r squared
+    """
+    ar_2 = -0.001
+    r_2 = 0
+    beta = [0]
+    order = 0
+    while r_2 > ar_2:
+        ar_2 = r_2
+        poly = beta
+        order += 1
+        beta, r_2 = polynomial(x,y,order)
+    return poly, ar_2
