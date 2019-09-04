@@ -93,6 +93,15 @@ def exponential(x,y):
     
     return np.exp(c), m, r_2
 
+def log(x,y):
+    """
+    returns m, c such that y = m*ln(x) + c
+    """
+    x_log = np.log(x)
+    m, c, r_2 = linear(x_log,y)
+    
+    return m, c, r_2
+
 def power(x,y):
     """
     returns m, b such that y = b*x^m
