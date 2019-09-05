@@ -11,8 +11,8 @@ y = []
 header = True #whether or not the data has a header row put True or False
 zeroes = 10**-13 #what to set a zero to (to stop divide by zero)
 
-expl = 0 #explanatory variable index
-resp = 1 #response variable index
+expl = 10 #explanatory variable index
+resp = 26 #response variable index
 
 for item in raw_data:
     if not(header):
@@ -32,13 +32,10 @@ def linear(x,y):
     
     y_mean = np.mean(y)
     
-    m_num = 0
-    for index in range(len(x)):
-        m_num += (x[index]-x_mean)*(y[index]-y_mean)
+    m_num = np.sum(np.multiply(np.subtract(x, x_mean), np.subtract(y, y_mean)))
     
-    m_den = 0
-    for item in x:
-        m_den += (item-x_mean)**2
+    m_den = np.sum(np.square(np.subtract(x, x_mean)))
+    
     
     m = m_num/m_den
     c = y_mean - (m*x_mean)
