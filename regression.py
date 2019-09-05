@@ -8,27 +8,29 @@ raw_data = csv.reader(file, delimiter=",")
 x = []
 y = []
 
-header = False #whether or not the data has a header row put True or False
+header = True #whether or not the data has a header row put True or False
+zeroes = 10**-13 #what to set a zero to (to stop divide by zero)
+
+expl = 0 #explanatory variable index
+resp = 1 #response variable index
 
 for item in raw_data:
     if not(header):
-        x.append(float(item[0])) #explanatory variable column - 0-indexed
-        y.append(float(item[1])) #response variable column - 0-indexed
+        if item[expl] == 0:
+            x.append(zeroes)
+        else: x.append(float(item[expl]))
+        if item[resp] == 0:
+            y.append(zeroes)
+        else: y.append(float(item[resp]))
     else: header = False
 
 def linear(x,y):
     """
     returns m, c, r_2 such that y = m*x + c
     """
-    x_mean = 0
-    for item in x:
-        x_mean += item
-    x_mean /= len(x)
+    x_mean = np.mean(x)
     
-    y_mean = 0
-    for item in y:
-        y_mean += item
-    y_mean /= len(y)
+    y_mean = np.mean(y)
     
     m_num = 0
     for index in range(len(x)):
@@ -50,6 +52,12 @@ def linear(x,y):
     
     return m,c,r_2
 
+def gradient(x,y):
+    """
+    returns m such that y=m*x
+    """
+    return np.mean(np.divide(x,y))
+
 def polynomial(x,y,order):
     """
     returns beta, ar_2 such that y = sum(beta[n]*x^n)
@@ -65,10 +73,7 @@ def polynomial(x,y,order):
     matrix = np.array(array)
     beta = np.linalg.inv(matrix.T@matrix)@matrix.T@np.array(y)
     
-    y_mean = 0
-    for item in y:
-        y_mean += item
-    y_mean /= n
+    y_mean = np.mean(y)
     
     sse = 0
     for index in range(n):
@@ -99,7 +104,7 @@ def log(x,y):
     """
     x_log = np.log(x)
     m, c, r_2 = linear(x_log,y)
-    
+
     return m, c, r_2
 
 def power(x,y):
